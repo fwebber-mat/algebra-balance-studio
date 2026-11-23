@@ -4363,33 +4363,33 @@
           ? '<span class="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md bg-slate-200 text-slate-700">Start</span>'
           : '';
 
-        const opSubBadgeHtml = idx > 0 && line.opLabelHtml
-          ? `<span class="mt-1 text-[10px] font-extrabold px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-800 border border-indigo-200/80 inline-flex items-center gap-1 shadow-2xs">${line.opLabelHtml}</span>`
-          : '';
+       const opSubBadgeHtml = idx > 0 && line.opLabelHtml
+  ? `<span class="mb-1 text-[10px] font-extrabold px-2 py-0.5 rounded-md bg-indigo-100 text-indigo-800 border border-indigo-200/80 inline-flex items-center gap-1 shadow-2xs">${line.opLabelHtml}</span>`
+  : '';
 
-        const lhsHtml = renderSideHtml(line.lhs, v, isLast && !state.isAnimating, 'lhs', { decimalMode: dec });
-        const rhsHtml = renderSideHtml(line.rhs, v, isLast && !state.isAnimating, 'rhs', { decimalMode: dec });
+const lhsHtml = renderSideHtml(line.lhs, v, isLast && !state.isAnimating, 'lhs', { decimalMode: dec });
+const rhsHtml = renderSideHtml(line.rhs, v, isLast && !state.isAnimating, 'rhs', { decimalMode: dec });
 
-        row.innerHTML = `
-          <div class="flex items-center gap-2 shrink-0 self-start pt-1">
-            <span class="text-xs font-extrabold text-slate-400 w-5">${idx + 1}.</span>
-            ${leftTagHtml}
-          </div>
-          <div class="math-font text-xl sm:text-2xl font-bold flex flex-col items-center justify-center flex-1 text-slate-900">
-            <div class="flex flex-wrap items-center justify-center gap-2">
-              <div class="inline-flex flex-col items-end">
-                <div class="min-h-[2.6rem] flex items-center">${lhsHtml}</div>
-                ${opSubBadgeHtml}
-              </div>
-              <span class="eq-sign ${opSubBadgeHtml ? 'self-start mt-2' : ''}">=</span>
-              <div class="inline-flex flex-col items-end">
-                <div class="min-h-[2.6rem] flex items-center">${rhsHtml}</div>
-                ${opSubBadgeHtml}
-              </div>
-            </div>
-          </div>
-          <div class="w-5 shrink-0"></div>
-        `;
+row.innerHTML = `
+  <div class="flex items-center gap-2 shrink-0 self-start ${opSubBadgeHtml ? 'pt-7' : 'pt-1'}">
+    <span class="text-xs font-extrabold text-slate-400 w-5">${idx + 1}.</span>
+    ${leftTagHtml}
+  </div>
+  <div class="math-font text-xl sm:text-2xl font-bold flex flex-col items-center justify-center flex-1 text-slate-900">
+    <div class="flex flex-wrap items-end justify-center gap-2">
+      <div class="inline-flex flex-col items-end">
+        ${opSubBadgeHtml}
+        <div class="min-h-[2.6rem] flex items-center">${lhsHtml}</div>
+      </div>
+      <span class="eq-sign min-h-[2.6rem] inline-flex items-center">${'='}</span>
+      <div class="inline-flex flex-col items-end">
+        ${opSubBadgeHtml}
+        <div class="min-h-[2.6rem] flex items-center">${rhsHtml}</div>
+      </div>
+    </div>
+  </div>
+  <div class="w-5 shrink-0"></div>
+`;
 
         dom.workingHistory.appendChild(row);
       });
